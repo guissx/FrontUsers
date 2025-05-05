@@ -14,7 +14,7 @@ export default function LoginForms() {
     setErro('');
 
     try {
-      const response = await axios.post('https://mongo-api-model-guissxs-projects.vercel.app/auth/login', {
+      const response = await axios.post('https://backend-express-postgresql.vercel.app/auth/login', {
         email,
         password
       });

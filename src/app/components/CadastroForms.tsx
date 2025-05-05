@@ -40,7 +40,7 @@ export default function CadastroForm() {
     }
 
     try {
-      const response = await axios.post('https://mongo-api-model-guissxs-projects.vercel.app/users/register', {
+      const response = await axios.post('https://backend-express-postgresql.vercel.app/users/register', {
         name,
         email,
         password
