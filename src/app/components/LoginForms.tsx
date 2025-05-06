@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForms() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState<string | null>(null);
   const [erro, setErro] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,10 +21,9 @@ export default function LoginForms() {
         password
       });
 
-      const tokenRecebido = response.data.token;
-      setToken(tokenRecebido);
-
-      console.log('Token:', tokenRecebido);
+       if(response.status === 201 || response.status === 200) {
+        router.push("/RegistroDeTreinos");
+      }
     } catch (error: any) {
       if (error.response && error.response.data?.message) {
         setErro(error.response.data.message);
@@ -70,12 +71,6 @@ export default function LoginForms() {
         >
           Entrar
         </button>
-
-        {token && (
-          <p className="mt-4 text-green-600 text-sm break-words">
-            Token salvo em memória: <br /> {token}
-          </p>
-        )}
       </form>
   );
 }

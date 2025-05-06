@@ -1,7 +1,8 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode';
 
 interface Exercise {
@@ -25,8 +26,8 @@ interface JwtPayload {
   [key: string]: any;
 }
 
-const WorkoutCreationPage = () => {
-  const navigate = useNavigate();
+export default function RegistroDeTreinos() {
+  const router = useRouter();
   const [workout, setWorkout] = useState<WorkoutForm>({
     title: '',
     date: new Date().toISOString().split('T')[0],
@@ -48,14 +49,13 @@ const WorkoutCreationPage = () => {
   const [decodedToken, setDecodedToken] = useState<JwtPayload | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Verificação do token ao carregar o componente
   useEffect(() => {
     const validateToken = () => {
       setIsLoading(true);
       const storedToken = localStorage.getItem('token');
       
       if (!storedToken) {
-        navigate('/login');
+        router.push('/login');
         return;
       }
 
@@ -64,7 +64,7 @@ const WorkoutCreationPage = () => {
         
         if (decoded.exp && decoded.exp * 1000 < Date.now()) {
           localStorage.removeItem('token');
-          navigate('/login');
+          router.push('/login');
           return;
         }
 
@@ -72,14 +72,14 @@ const WorkoutCreationPage = () => {
         setDecodedToken(decoded);
       } catch (error) {
         localStorage.removeItem('token');
-        navigate('/login');
+        router.push('/login');
       } finally {
         setIsLoading(false);
       }
     };
 
     validateToken();
-  }, [navigate]);
+  }, [router]);
 
   const handleWorkoutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -140,7 +140,7 @@ const WorkoutCreationPage = () => {
 
   const submitWorkout = async () => {
     if (!token || !decodedToken) {
-      navigate('/login');
+      router.push('/login');
       return;
     }
 
@@ -160,7 +160,7 @@ const WorkoutCreationPage = () => {
 
     try {
       const response = await axios.post(
-        '/api/workouts',
+        'https://mongo-api-model-guissxs-projects.vercel.app/Workout/',
         {
           title: workout.title,
           date: workout.date || new Date().toISOString().split('T')[0],
@@ -190,7 +190,7 @@ const WorkoutCreationPage = () => {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 401) {
           localStorage.removeItem('token');
-          navigate('/login');
+          router.push('/login');
           return;
         }
         setError(err.response?.data?.message || 'Erro ao criar treino');
@@ -397,6 +397,4 @@ const WorkoutCreationPage = () => {
       </div>
     </div>
   );
-};
-
-export default WorkoutCreationPage;
+}
