@@ -109,7 +109,7 @@ export default function CadastroForm() {
 
         <button
           type="submit"
-          className="w-full bg-blue-400 text-white p-2 rounded hover:bg-blue-800 transition"
+          className="w-full bg-blue-400 text-white p-2 rounded hover:bg-blue-800 cursor-pointer transition"
         >
           Cadastrar
         </button>
@@ -120,7 +120,7 @@ export default function CadastroForm() {
             <button
               type="button"
               onClick={() => router.push('/login')}
-              className="text-blue-500 hover:text-blue-700 font-medium"
+              className="text-blue-500 hover:text-blue-700 font-medium cursor-pointer  transition"
             >
               Faça login aqui
             </button>

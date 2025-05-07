@@ -22,7 +22,7 @@ export default function LoginForms() {
 
       if (response.status === 201 || response.status === 200) {
         localStorage.setItem('token', response.data.token);
-        router.push("/RegistroDeTreinos");
+        router.push("/treinos");
       }
     } catch (error: any) {
       if (error.response && error.response.data?.message) {
@@ -67,7 +67,7 @@ export default function LoginForms() {
 
         <button
           type="submit"
-          className="w-full bg-blue-400 text-white p-2 rounded hover:bg-blue-800 transition"
+          className="w-full bg-blue-400 text-white p-2 rounded hover:bg-blue-800 transition cursor-pointer"
         >
           Entrar
         </button>
@@ -78,7 +78,7 @@ export default function LoginForms() {
             <button
               type="button"
               onClick={() => router.push('/cadastro')}
-              className="text-blue-500 hover:text-blue-700 font-medium"
+              className="text-blue-500 hover:text-blue-700 font-medium cursor-pointer  transition"
             >
               Cadastre-se aqui
             </button>

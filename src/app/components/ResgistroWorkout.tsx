@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode';
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface Exercise {
   name: string;
@@ -164,7 +166,8 @@ export default function RegistroDeTreinos() {
         {
           title: workout.title,
           date: workout.date || new Date().toISOString().split('T')[0],
-          exercises: workout.exercises
+          exercises: workout.exercises,
+          userId: decodedToken.userId // Adiciona o userId ao payload
         },
         {
           headers: {
@@ -216,7 +219,16 @@ export default function RegistroDeTreinos() {
 
   return (
     <div className="container mx-auto px-4 py-10 max-w-3xl">
-      <h1 className="text-3xl font-bold mb-8 text-gray-900">Criar Novo Treino</h1>
+      <div className="flex justify-between items-center mb-8">
+        <Link 
+          href="/visualizar-treinos"
+          className="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2"
+        >
+          <FaArrowLeft /> Voltar para Treinos
+        </Link>
+        <h1 className="text-3xl font-bold text-blue-600">Criar Novo Treino</h1>
+        <div className="w-10"></div> {/* Espaçador para alinhamento */}
+      </div>
   
       {error && (
         <div className="bg-red-100 border-l-4 border-red-600 text-red-800 p-4 mb-6 rounded-lg shadow-sm">
@@ -376,7 +388,13 @@ export default function RegistroDeTreinos() {
       )}
   
       {/* Botão de salvar treino */}
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+        <Link 
+          href="/visualizar-treinos"
+          className="px-6 py-3 rounded-lg text-gray-700 font-semibold border border-gray-300 hover:bg-gray-100 transition-colors duration-200 flex items-center gap-2"
+        >
+          <FaArrowLeft /> Voltar
+        </Link>
         <button
           onClick={submitWorkout}
           disabled={isSubmitting || workout.exercises.length === 0}
@@ -401,6 +419,4 @@ export default function RegistroDeTreinos() {
       </div>
     </div>
   );
-  
-
 }
