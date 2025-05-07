@@ -215,93 +215,95 @@ export default function RegistroDeTreinos() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Criar Novo Treino</h1>
-      
+    <div className="container mx-auto px-4 py-10 max-w-3xl">
+      <h1 className="text-3xl font-bold mb-8 text-gray-900">Criar Novo Treino</h1>
+  
       {error && (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded">
-          <p>{error}</p>
+        <div className="bg-red-100 border-l-4 border-red-600 text-red-800 p-4 mb-6 rounded-lg shadow-sm">
+          <p className="font-medium">{error}</p>
         </div>
       )}
-      
+  
       {success && (
-        <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded">
-          <p>Treino criado com sucesso!</p>
+        <div className="bg-green-100 border-l-4 border-green-600 text-green-800 p-4 mb-6 rounded-lg shadow-sm">
+          <p className="font-medium">Treino criado com sucesso!</p>
         </div>
       )}
-      
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Título do Treino*</label>
+  
+      {/* Informações do treino */}
+      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div className="mb-6">
+          <label className="block text-gray-800 font-semibold text-lg mb-2">Título do Treino*</label>
           <input
             type="text"
             name="title"
             value={workout.title}
             onChange={handleWorkoutChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base placeholder-gray-400"
             placeholder="Ex: Treino de Peito, Lower Body"
             required
           />
         </div>
-        
+  
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Data*</label>
+          <label className="block text-gray-800 font-semibold text-lg mb-2">Data*</label>
           <input
             type="date"
             name="date"
             value={workout.date}
             onChange={handleWorkoutChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base"
             required
           />
         </div>
       </div>
-
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800">Adicionar Exercício</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+  
+      {/* Adicionar exercício */}
+      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h2 className="text-2xl font-semibold mb-6 text-gray-900">Adicionar Exercício</h2>
+  
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Nome do Exercício*</label>
+            <label className="block text-gray-800 font-medium mb-2">Nome do Exercício*</label>
             <input
               type="text"
               name="name"
               value={newExercise.name}
               onChange={handleExerciseChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base placeholder-gray-400"
               placeholder="Ex: Supino Reto, Agachamento"
               required
             />
           </div>
-          
+  
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Séries*</label>
+            <label className="block text-gray-800 font-medium mb-2">Séries*</label>
             <input
               type="number"
               name="sets"
               min="1"
               value={newExercise.sets}
               onChange={handleExerciseChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base"
               required
             />
           </div>
-          
+  
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Repetições*</label>
+            <label className="block text-gray-800 font-medium mb-2">Repetições*</label>
             <input
               type="number"
               name="reps"
               min="1"
               value={newExercise.reps}
               onChange={handleExerciseChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base"
               required
             />
           </div>
-          
+  
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Peso (kg)</label>
+            <label className="block text-gray-800 font-medium mb-2">Peso (kg)</label>
             <input
               type="number"
               name="weight"
@@ -309,58 +311,59 @@ export default function RegistroDeTreinos() {
               step="0.5"
               value={newExercise.weight || ''}
               onChange={handleExerciseChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base"
             />
           </div>
         </div>
-        
+  
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Observações</label>
+          <label className="block text-gray-800 font-medium mb-2">Observações</label>
           <textarea
             name="notes"
             value={newExercise.notes || ''}
             onChange={handleExerciseChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none text-base placeholder-gray-400"
             placeholder="Dicas, variações, etc."
-            rows={2}
+            rows={3}
           />
         </div>
-        
+  
         <button
           onClick={addExercise}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-semibold transition duration-200"
         >
           Adicionar Exercício
         </button>
       </div>
-
+  
+      {/* Lista de exercícios */}
       {workout.exercises.length > 0 && (
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-gray-800">Exercícios ({workout.exercises.length})</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">Exercícios ({workout.exercises.length})</h2>
             <span className="text-sm text-gray-500">Clique em um exercício para remover</span>
           </div>
-          
-          <div className="space-y-3">
+  
+          <div className="space-y-4">
             {workout.exercises.map((exercise, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 onClick={() => removeExercise(index)}
-                className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors duration-150"
+                className="border border-gray-200 rounded-lg p-4 hover:bg-gray-100 cursor-pointer transition"
               >
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-medium text-gray-800">{exercise.name}</h3>
+                    <h3 className="font-semibold text-gray-800">{exercise.name}</h3>
                     <p className="text-gray-600">
                       {exercise.sets} séries × {exercise.reps} repetições
                       {exercise.weight ? ` × ${exercise.weight}kg` : ''}
                     </p>
                     {exercise.notes && (
-                      <p className="text-gray-500 mt-1 text-sm">Obs: {exercise.notes}</p>
+                      <p className="text-sm text-gray-500 mt-1">Obs: {exercise.notes}</p>
                     )}
                   </div>
                   <button
-                    className="text-red-500 hover:text-red-700 p-1"
+                    className="text-red-500 hover:text-red-700 text-xl font-bold"
                     aria-label="Remover exercício"
                   >
                     ✕
@@ -371,30 +374,33 @@ export default function RegistroDeTreinos() {
           </div>
         </div>
       )}
-
+  
+      {/* Botão de salvar treino */}
       <div className="flex justify-end">
         <button
           onClick={submitWorkout}
           disabled={isSubmitting || workout.exercises.length === 0}
-          className={`px-6 py-3 rounded-lg text-white font-medium ${
-            isSubmitting 
-              ? 'bg-gray-400 cursor-not-allowed' 
-              : workout.exercises.length === 0
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-green-600 hover:bg-green-700 transition-colors duration-200'
+          className={`px-6 py-3 rounded-lg text-white font-semibold transition-colors duration-200 ${
+            isSubmitting || workout.exercises.length === 0
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-green-600 hover:bg-green-700'
           }`}
         >
           {isSubmitting ? (
             <span className="flex items-center">
-              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg className="animate-spin mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z" />
               </svg>
               Salvando...
             </span>
-          ) : 'Salvar Treino'}
+          ) : (
+            'Salvar Treino'
+          )}
         </button>
       </div>
     </div>
   );
+  
+
 }
