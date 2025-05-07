@@ -1,16 +1,25 @@
 'use client';
-import EditarTreino from "@/app/components/EditarWorkout";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
+import { use } from 'react';
+import { Suspense } from 'react';
+import EditarWorkout from '../../components/EditarWorkout';
+
+// Função auxiliar para desempacotar a Promise
+async function unpackParams(params: Promise<{ id: string }>) {
+  return await params;
 }
 
-export default function EditarPage({ params }: PageProps) {
+export default function Page({ params }: { params: Promise<{ id: string }> }) {
+  // Desempacota a Promise usando React.use()
+  const { id } = use(unpackParams(params));
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black p-4">
-      <EditarTreino workoutId={params.id} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <EditarWorkout workoutId={id} />
+      </Suspense>
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';

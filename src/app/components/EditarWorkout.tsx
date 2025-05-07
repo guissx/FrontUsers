@@ -20,7 +20,7 @@ interface JwtPayload {
 }
 
 interface EditarTreinoProps {
-  workoutId: string; // Adicione esta interface
+  workoutId: string | string[]; 
 }
 
 
