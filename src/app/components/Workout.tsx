@@ -149,11 +149,21 @@ export default function VisualizarTreinos() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('pt-BR');
+    // Ajuste para o timezone local
+    const adjustedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+    return adjustedDate.toLocaleDateString('pt-BR');
+  };
+
+  const getISODateString = (dateString: string) => {
+    const date = new Date(dateString);
+    // Ajuste para o timezone local e formata como YYYY-MM-DD
+    const adjustedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+    return adjustedDate.toISOString().split('T')[0];
   };
 
   const filteredWorkouts = workouts.filter(workout => {
-    const matchesDate = filterDate ? workout.date.includes(filterDate) : true;
+    const workoutDateStr = getISODateString(workout.date);
+    const matchesDate = filterDate ? workoutDateStr === filterDate : true;
     const matchesTitle = filterTitle 
       ? workout.title.toLowerCase().includes(filterTitle.toLowerCase()) 
       : true;
