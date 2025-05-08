@@ -369,7 +369,7 @@ export default function EditarWorkout({ workoutId }: EditarTreinoProps) {
             type="button"
             onClick={() => {
               if (hasChanges && !confirm('Tem alterações não salvas. Deseja realmente cancelar?')) return;
-              router.push('/workouts');
+              router.push('/treinos');
             }}
             className="flex-1 py-2 px-4 bg-gray-500 text-white font-medium rounded-md hover:bg-gray-600 transition"
           >

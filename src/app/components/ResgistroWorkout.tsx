@@ -221,7 +221,7 @@ export default function RegistroDeTreinos() {
     <div className="container mx-auto px-4 py-10 max-w-3xl">
       <div className="flex justify-between items-center mb-8">
         <Link 
-          href="/visualizar-treinos"
+          href="/treinos"
           className="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2"
         >
           <FaArrowLeft /> Voltar para Treinos
@@ -390,8 +390,8 @@ export default function RegistroDeTreinos() {
       {/* Botão de salvar treino */}
       <div className="flex justify-between">
         <Link 
-          href="/visualizar-treinos"
-          className="px-6 py-3 rounded-lg text-gray-700 font-semibold border border-gray-300 hover:bg-gray-100 transition-colors duration-200 flex items-center gap-2"
+          href="/treinos"
+          className="px-6 py-3 rounded-lg text-gray-700 font-semibold border border-gray-300 bg-gray-100 transition-colors duration-200 flex items-center gap-2"
         >
           <FaArrowLeft /> Voltar
         </Link>
