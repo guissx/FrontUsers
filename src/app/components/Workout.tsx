@@ -107,9 +107,14 @@ export default function VisualizarTreinos() {
         setIsLoading(false);
       }
     };
-
     validateToken();
   }, [router]);
+
+      const handleLogout = () => {
+  localStorage.removeItem('token');
+  router.push('/login');
+  };
+
 
   const deleteWorkout = async (workoutId: string) => {
     if (!token) {
@@ -185,14 +190,24 @@ export default function VisualizarTreinos() {
   return (
     <div className="container mx-auto px-4 py-10 max-w-6xl">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-blue-600">Meus Treinos</h1>
-        <Link 
-          href="/RegistroDeTreinos"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-semibold transition duration-200"
-        >
-          Criar Novo Treino
-        </Link>
-      </div>
+  <h1 className="text-3xl font-bold text-blue-600">Meus Treinos</h1>
+  
+  <div className="flex gap-4">
+    <Link 
+      href="/RegistroDeTreinos"
+      className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-semibold transition duration-200"
+    >
+      Criar Novo Treino
+    </Link>
+    
+    <button
+      onClick={handleLogout}
+      className="bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-lg font-semibold transition duration-200"
+    >
+      Sair
+    </button>
+  </div>
+</div>
 
       {error && (
         <div className="bg-red-100 border-l-4 border-red-600 text-red-800 p-4 mb-6 rounded-lg shadow-sm">
